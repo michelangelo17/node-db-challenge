@@ -1,13 +1,67 @@
-
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+exports.seed = knex =>
+  knex('contexts')
+    .del()
+    .then(() =>
+      knex('contexts').insert([
+        {
+          name: 'Lakeland',
+        },
+        {
+          name: 'Tandag',
+        },
+        {
+          name: 'Mangaldan',
+        },
+        {
+          name: 'Middelburg',
+        },
+        {
+          name: 'Carora',
+        },
+        {
+          name: 'Gujō',
+        },
+        {
+          name: 'Sirdaryo',
+        },
+        {
+          name: 'Phủ Thông',
+        },
+        {
+          name: 'Daoxu',
+        },
+        {
+          name: 'Lututów',
+        },
+        {
+          name: 'Rybí',
+        },
+        {
+          name: 'Fundong',
+        },
+        {
+          name: 'Surami',
+        },
+        {
+          name: 'Tawali',
+        },
+        {
+          name: 'Jinluo',
+        },
+        {
+          name: 'Sherbrooke',
+        },
+        {
+          name: 'Sulangan',
+        },
+        {
+          name: 'Pinheiro',
+        },
+        {
+          name: 'Diapaga',
+        },
+        {
+          name: 'Fray Luis A. Beltrán',
+        },
+      ])
+    )
