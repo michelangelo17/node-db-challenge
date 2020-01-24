@@ -1,3 +1,5 @@
 const db = require('../../../data/dbConfig')
 
-module.exports = {}
+const getProjects = () => db('projects')
+
+module.exports = { getProjects }

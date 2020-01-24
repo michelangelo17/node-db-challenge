@@ -4,10 +4,9 @@ const db = require('./model')
 module.exports = router
 
 router.get('/', async (req, res) => {
-  const temp = await db.temp()
-  res.json(temp)
+  const projects = await db.getProjects()
+  res.json(projects)
 })
-
 // if (something) {
 //   throw new Error('')
 // }
