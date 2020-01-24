@@ -14,6 +14,11 @@ router.post('/', valProjectPost, async (req, res) => {
   res.status(201).json(addedProject)
 })
 
+router.get('/:id', async (req, res) => {
+  const project = await db.getProjectById(req.params.id)
+  res.json(project)
+})
+
 // if (something) {
 //   throw new Error('')
 // }

@@ -12,4 +12,26 @@ const addProject = async projectData =>
     ])
   )[0]
 
-module.exports = { getProjects, addProject }
+const getProjectById = async id => {
+  const project = (
+    await db
+      .select('project_id AS id', 'name', 'description', 'completed')
+      .from('projects')
+      .where('project_id', id)
+  )[0]
+  completeProject = {
+    ...project,
+    tasks: await db
+      .select('task_id AS id', 'description', 'notes', 'completed')
+      .from('tasks')
+      .where('project_id', id),
+    resources: await db
+      .select('r.resource_id AS id', 'name', 'description')
+      .from('resources AS r')
+      .innerJoin('project_resource AS pr', 'r.resource_id', 'pr.resource_id')
+      .where('pr.project_id', id),
+  }
+  return completeProject
+}
+
+module.exports = { getProjects, addProject, getProjectById }
