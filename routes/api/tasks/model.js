@@ -14,4 +14,15 @@ const getTasks = () =>
     .innerJoin('tasks AS t', 'p.project_id', 't.project_id')
     .orderBy('p.project_id', 'task_id')
 
-module.exports = { getTasks }
+const addTask = async taskData =>
+  (
+    await db('tasks').insert(taskData, [
+      'task_id',
+      'description',
+      'notes',
+      'completed',
+      'project_id',
+    ])
+  )[0]
+
+module.exports = { getTasks, addTask }

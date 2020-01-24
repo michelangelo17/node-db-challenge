@@ -1,13 +1,17 @@
-const valProjectPost = (req, res, next) => {
+const valTaskPost = (req, res, next) => {
   if (JSON.stringify(req.body) !== '{}') {
-    if (req.body.name) {
-      next()
+    if (req.body.description) {
+      if (req.body.project_id) {
+        next()
+      } else {
+        throw new Error('Missing project_id')
+      }
     } else {
-      throw new Error('Missing project name')
+      throw new Error('Missing task description')
     }
   } else {
     throw new Error('Missing project data')
   }
 }
 
-module.exports = { valProjectPost }
+module.exports = { valTaskPost }
