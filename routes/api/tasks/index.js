@@ -4,8 +4,8 @@ const db = require('./model')
 module.exports = router
 
 router.get('/', async (req, res) => {
-  const temp = await db.temp()
-  res.json(temp)
+  const tasks = await db.getTasks()
+  res.json(tasks)
 })
 
 // if (something) {
