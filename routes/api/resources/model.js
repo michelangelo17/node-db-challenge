@@ -1,3 +1,5 @@
 const db = require('../../../data/dbConfig')
 
-module.exports = {}
+const getResources = () => db('resources')
+
+module.exports = { getResources }
