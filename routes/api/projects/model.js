@@ -34,4 +34,25 @@ const getProjectById = async id => {
   return completeProject
 }
 
-module.exports = { getProjects, addProject, getProjectById }
+const updateProject = async (id, projectData) =>
+  (
+    await db('projects')
+      .where('project_id', id)
+      .update(projectData, ['project_id', 'name', 'description', 'completed'])
+  )[0]
+
+const deleteProject = async id => {
+  const deleted = (await db('projects').where('project_id', id))[0]
+  await db('projects')
+    .where('project_id', id)
+    .del()
+  return deleted
+}
+
+module.exports = {
+  getProjects,
+  addProject,
+  getProjectById,
+  updateProject,
+  deleteProject,
+}
