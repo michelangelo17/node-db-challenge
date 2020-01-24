@@ -15,7 +15,6 @@ router.post('/', valResourcePost, async (req, res) => {
 })
 
 router.get('/:id', valId, async (req, res) => {
-  console.log(db)
   const resource = await db.getResourceById(req.params.id)
   res.json(resource)
 })

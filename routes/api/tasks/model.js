@@ -25,4 +25,36 @@ const addTask = async taskData =>
     ])
   )[0]
 
-module.exports = { getTasks, addTask }
+const getTaskById = async id => {
+  const task = (await db('tasks').where('task_id', id))[0]
+  const taskWContext = {
+    ...task,
+    contexts: await db('contexts AS c')
+      .innerJoin('task_context AS tc', 'tc.context_id', 'c.context_id')
+      .where('tc.task_id', id),
+  }
+  return taskWContext
+}
+
+const updateTask = async (id, taskData) =>
+  (
+    await db('tasks')
+      .where('task_id', id)
+      .update(taskData, ['task_id', 'description', 'notes', 'completed'])
+  )[0]
+
+const deleteTask = async id => {
+  const deleted = (await db('tasks').where('task_id', id))[0]
+  await db('tasks')
+    .where('task_id', id)
+    .del()
+  return deleted
+}
+
+module.exports = {
+  getTasks,
+  addTask,
+  getTaskById,
+  updateTask,
+  deleteTask,
+}

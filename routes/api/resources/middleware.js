@@ -13,19 +13,19 @@ const valResourcePost = (req, res, next) => {
 }
 
 const valId = async (req, res, next) => {
-  const project = await db('resources').where('resource_id', req.params.id)
-  if (project.length === 0) {
+  const resource = await db('resources').where('resource_id', req.params.id)
+  if (resource.length === 0) {
     throw new Error('Invalid resource id')
   }
   next()
 }
 
 const valResourcePut = (req, res, next) => {
-  const p = req.body
-  if (JSON.stringify(p) === '{}') {
+  const r = req.body
+  if (JSON.stringify(r) === '{}') {
     throw new Error('Missing resource data')
   }
-  if (p.name || p.description) {
+  if (r.name || r.description) {
     next()
   } else {
     throw new Error(
