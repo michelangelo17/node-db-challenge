@@ -12,7 +12,7 @@ module.exports = {
     },
   },
   production: {
-    client: client,
+    client: 'pg',
     connection: DATABASE_URL,
     migrations: {
       directory: './data/migrations',
