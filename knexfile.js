@@ -1,9 +1,9 @@
-const { DB_URL, DATABASE_URL, client } = require('./env')
+const { DATABASE_URL } = require('./env')
 
 module.exports = {
   development: {
     client: 'pg',
-    connection: DB_URL,
+    connection: DATABASE_URL,
     migrations: {
       directory: './data/migrations',
     },
