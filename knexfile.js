@@ -1,4 +1,4 @@
-const { DB_URL } = require('./env')
+const { DB_URL, DATABASE_URL } = require('./env')
 
 module.exports = {
   development: {
@@ -9,6 +9,16 @@ module.exports = {
     },
     seeds: {
       directory: './data/seeds',
+    },
+  },
+  production: {
+    client: 'pg',
+    connection: DATABASE_URL,
+    migrations: {
+      directory: __dirname + '/db/migrations',
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/production',
     },
   },
 }
