@@ -1,9 +1,8 @@
 exports.seed = knex =>
   knex('projects')
     .del()
-    .then(function() {
-      // Inserts seed entries
-      return knex('projects').insert([
+    .then(() =>
+      knex('projects').insert([
         {
           name: 'Focused',
           description: 'Organized foreground policy',
@@ -55,4 +54,4 @@ exports.seed = knex =>
           completed: false,
         },
       ])
-    })
+    )
