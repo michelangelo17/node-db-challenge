@@ -1,4 +1,4 @@
-const { DB_URL, DATABASE_URL } = require('./env')
+const { DB_URL, DATABASE_URL, client } = require('./env')
 
 module.exports = {
   development: {
@@ -12,7 +12,7 @@ module.exports = {
     },
   },
   production: {
-    client: 'postgresql',
+    client: client,
     connection: DATABASE_URL,
     migrations: {
       directory: './data/migrations',
