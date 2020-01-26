@@ -1,19 +1,16 @@
 const db = require('../../../data/dbConfig')
 
 const valTaskPost = (req, res, next) => {
-  if (JSON.stringify(req.body) !== '{}') {
-    if (req.body.description) {
-      if (req.body.project_id) {
-        next()
-      } else {
-        throw new Error('Missing project_id')
-      }
-    } else {
-      throw new Error('Missing task description')
-    }
-  } else {
+  if (JSON.stringify(req.body) === '{}') {
     throw new Error('Missing task data')
   }
+  if (!req.body.description) {
+    throw new Error('Missing task description')
+  }
+  if (!req.body.project_id) {
+    throw new Error('Missing project_id')
+  }
+  next()
 }
 
 const valId = async (req, res, next) => {

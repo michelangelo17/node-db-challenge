@@ -1,15 +1,13 @@
 const db = require('../../../data/dbConfig')
 
 const valResourcePost = (req, res, next) => {
-  if (JSON.stringify(req.body) !== '{}') {
-    if (req.body.name) {
-      next()
-    } else {
-      throw new Error('Missing resource name')
-    }
-  } else {
+  if (JSON.stringify(req.body) === '{}') {
     throw new Error('Missing resource data')
   }
+  if (!req.body.name) {
+    throw new Error('Missing resource name')
+  }
+  next()
 }
 
 const valId = async (req, res, next) => {

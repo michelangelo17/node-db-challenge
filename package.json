@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+temp.git"
+    "url": "git+https://github.com/michelangelo17/node-db-challenge.git"
   },
   "keywords": [],
   "author": "Michelangelo Markus",
   "bugs": {
-    "url": "https://github.com/michelangelo17/temp"
+    "url": "https://github.com/michelangelo17/node-db-challenge/"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
