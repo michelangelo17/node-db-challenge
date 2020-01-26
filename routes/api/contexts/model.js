@@ -3,7 +3,12 @@ const db = require('../../../data/dbConfig')
 const getContexts = () => db.select('context_id AS id', 'name').from('contexts')
 
 const getContextById = async id =>
-  (await db('contexts').where('context_id', id))[0]
+  (
+    await db
+      .select('context_id AS id', 'name')
+      .from('contexts')
+      .where('context_id', id)
+  )[0]
 
 // not exported
 const connectContextToTask = async (tid, cid) =>
