@@ -15,6 +15,7 @@ exports.up = knex =>
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
       .notNullable()
+    table.unique(['project_id', 'resource_id'])
   })
 
 exports.down = knex => knex.schema.dropTableIfExists('project_resource')

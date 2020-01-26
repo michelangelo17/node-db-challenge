@@ -88,10 +88,6 @@ exports.seed = knex =>
           context_id: 5,
         },
         {
-          task_id: 2,
-          context_id: 12,
-        },
-        {
           task_id: 6,
           context_id: 11,
         },
@@ -102,10 +98,6 @@ exports.seed = knex =>
         {
           task_id: 6,
           context_id: 16,
-        },
-        {
-          task_id: 4,
-          context_id: 3,
         },
         {
           task_id: 1,

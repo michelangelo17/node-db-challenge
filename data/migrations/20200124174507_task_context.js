@@ -15,6 +15,7 @@ exports.up = knex =>
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
       .notNullable()
+    table.unique(['task_id', 'context_id'])
   })
 
 exports.down = knex => knex.schema.dropTableIfExists('task_context')

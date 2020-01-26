@@ -1,6 +1,9 @@
 const db = require('../../../data/dbConfig')
 
-const getProjects = () => db('projects')
+const getProjects = () =>
+  db
+    .select('project_id AS id', 'name', 'description', 'completed')
+    .from('projects')
 
 const addProject = async projectData =>
   (

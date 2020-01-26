@@ -3,7 +3,7 @@ const db = require('../../../data/dbConfig')
 const getTasks = () =>
   db
     .select(
-      'task_id',
+      'task_id AS id',
       't.description',
       'notes',
       't.completed',
@@ -26,14 +26,27 @@ const addTask = async taskData =>
   )[0]
 
 const getTaskById = async id => {
-  const task = (await db('tasks').where('task_id', id))[0]
-  const taskWContext = {
-    ...task,
-    contexts: await db('contexts AS c')
+  return {
+    ...(
+      await db
+        .select(
+          'task_id AS id',
+          't.description',
+          'notes',
+          't.completed',
+          'name AS project_name',
+          'p.description AS project_description'
+        )
+        .from('projects AS p')
+        .innerJoin('tasks AS t', 'p.project_id', 't.project_id')
+        .where('task_id', id)
+    )[0],
+    contexts: await db
+      .select('c.context_id AS id', 'name')
+      .from('contexts AS c')
       .innerJoin('task_context AS tc', 'tc.context_id', 'c.context_id')
       .where('tc.task_id', id),
   }
-  return taskWContext
 }
 
 const updateTask = async (id, taskData) =>

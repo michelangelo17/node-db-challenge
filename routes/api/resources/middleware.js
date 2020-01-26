@@ -1,4 +1,4 @@
-const db = require('../../../data/dbConfig')
+const db = require('./model')
 
 const valResourcePost = (req, res, next) => {
   if (JSON.stringify(req.body) === '{}') {
@@ -11,8 +11,8 @@ const valResourcePost = (req, res, next) => {
 }
 
 const valId = async (req, res, next) => {
-  const resource = await db('resources').where('resource_id', req.params.id)
-  if (resource.length === 0) {
+  const resource = await db.getResourceById(req.params.id)
+  if (!resource) {
     throw new Error('Invalid resource id')
   }
   next()
@@ -23,11 +23,11 @@ const valResourcePut = (req, res, next) => {
   if (JSON.stringify(r) === '{}') {
     throw new Error('Missing resource data')
   }
-  if (r.name || r.description) {
+  if (r.name || r.description || r.project_id) {
     next()
   } else {
     throw new Error(
-      'needs 1 or more of the following fields: name, description'
+      'needs 1 or more of the following fields: name, description, project_id'
     )
   }
 }
