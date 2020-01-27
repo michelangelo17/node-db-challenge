@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "Michelangelo Markus",
   "bugs": {
-    "url": "https://github.com/michelangelo17/node-db-challenge/"
+    "url": "https://github.com/michelangelo17/node-db-challenge/issues"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
