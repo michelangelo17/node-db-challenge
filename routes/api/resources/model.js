@@ -61,11 +61,7 @@ const addResource = async rd => {
     return await addResourceWithPid(rd)
   }
   return (
-    await db('resources').insert(resourceData, [
-      'resource_id',
-      'name',
-      'description',
-    ])
+    await db('resources').insert(rd, ['resource_id', 'name', 'description'])
   )[0]
 }
 
