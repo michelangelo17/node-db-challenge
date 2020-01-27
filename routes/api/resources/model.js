@@ -49,7 +49,11 @@ const updateResourceWithPid = async (id, rd) => {
     const updated = (
       await db('resources')
         .where('resource_id', id)
-        .update({ name: rd.name, description: rd.description })
+        .update(
+          { name: rd.name, description: rd.description }[
+            ('resource_id AS id', 'name', 'description')
+          ]
+        )
     )[0]
     return { ...updated, connectedToProject: rd.project_id }
   }
