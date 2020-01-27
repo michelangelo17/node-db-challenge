@@ -4,7 +4,12 @@ const getResources = () =>
   db.select('resource_id AS id', 'name', 'description').from('resources')
 
 const getResourceById = async id =>
-  (await db('resources').where('resource_id', id))[0]
+  (
+    await db
+      .select('resource_id AS id', 'name', 'description')
+      .from('resources')
+      .where('resource_id', id)
+  )[0]
 
 // not exported
 const connectResourceToProject = async (pid, rid) =>
